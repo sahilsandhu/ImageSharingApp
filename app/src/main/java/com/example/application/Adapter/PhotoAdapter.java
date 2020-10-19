@@ -1,0 +1,72 @@
+package com.example.application.Adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.application.Model.Post;
+import com.example.application.Fragment.PostDetailFragment;
+import com.example.application.Model.Post;
+import com.example.application.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+public class PhotoAdapter extends  RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
+
+    private Context mContext;
+    private List<Post> mPosts;
+    public PhotoAdapter(Context mContext, List<Post> mPosts)
+    {
+        this.mContext = mContext;
+        this.mPosts = mPosts;
+    }
+
+    public PhotoAdapter(Context context, List<Post> myPhotoList) {
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.photo_item,parent,false);
+
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final Post post = mPosts.get(position);
+        Picasso.get().load(post.getImageurl()).placeholder(R.mipmap.ic_launcher).into(holder.postImage);
+
+        holder.postImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit().putString("postid",post.getPostid()).apply();
+                ((FragmentActivity) mContext).getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.fragmentConstain,new PostDetailFragment()).commit();
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return mPosts.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
+        public ImageView postImage;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            postImage = itemView.findViewById(R.id.post_image);
+
+        }
+    }
+}
