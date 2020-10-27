@@ -60,7 +60,7 @@ Here we get all the photos of the the following users and personal photos</br></
 ![starting image](https://github.com/sahilsandhu/PhotoSharingApp/blob/master/picture.jpeg)</br></br>
 10. Liked Photos</br> 
 Here i have liked the image. As soon as we like the image, the like button color changes to red</br></br>
-![starting image](https://github.com/sahilsandhu/PhotoSharingApp/blob/master/likedlmages.jpeg)</br></br>
+![starting image](https://github.com/sahilsandhu/PhotoSharingApp/blob/master/likedImages.jpeg)</br></br>
 11. Searching Fragment</br> 
 it is the search Fragment</br></br>
 ![starting image](https://github.com/sahilsandhu/PhotoSharingApp/blob/master/search.jpeg)</br></br>
